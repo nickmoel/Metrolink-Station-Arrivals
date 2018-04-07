@@ -19,8 +19,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ## Running the tests
-![Alt Text](https://i.imgur.com/lOo1WVX.gif)
-![Alt Text](https://i.imgur.com/cYlTgF1.gif)
+![Alt Text](https://i.imgur.com/NgQ8E3G.gif)
+
 ### Breaking down the tests
 What is mocking?
 Mocking is creating objects that mimic the behavior of real objects.
