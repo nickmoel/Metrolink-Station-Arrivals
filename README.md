@@ -1,9 +1,9 @@
 
-# Mario/ STL METROLINK STATION NEXT ARRIVAL TIME CHECKER v0.7.5
+# Mario/ STL METROLINK STATION NEXT ARRIVAL TIME CHECKER v0.7.7 *Swing GUI just added*
 
-![Alt Text](https://i.imgur.com/8FgOAd5.gif)
+![Alt Text](https://i.imgur.com/72XqsVN.gif)
 
-Launch Code Self guided Java Exercises PSET7 v0.7.5. Transitioning from JDBC to HIBERNATE.This final Problem uses my solution for PSET6 as a base.
+Launch Code Self guided Java Exercises PSET7 v0.7.7. Transitioning from JDBC to HIBERNATE.This final Problem uses my solution for PSET6 as a base.
 
 Run the program, pick the METROLINK STATION that you want the next arrival time for and that's it!
 
@@ -36,12 +36,10 @@ The second test just uses assertThat() to check that the user input validation m
 * Spring Framework for Dependency Injection
 * Hibernate for mapping to the database
 * SQLite for database management
+* SWING for GUI
 * JUnit for intial unit testing
 * Mockito for using mocking to make the unit tests quick
 
-## Versioning
-
-For the versions available, see the [tags on this repository](https://github.com/nickmoel/mario/tags). 
 
 ## Authors
 
