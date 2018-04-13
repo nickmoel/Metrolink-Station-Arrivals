@@ -20,12 +20,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Running the tests
 ![Alt Text](https://i.imgur.com/NgQ8E3G.gif)
-
+[Alt Text](https://i.imgur.com/Z3SkxA3.gif)
 ### Breaking down the tests
 What is mocking?
 Mocking is creating objects that mimic the behavior of real objects.
 
 By using Mockito, you feed the tested methods with your own substituted mock doubles. Making the test dependent of the database. With the first set of tests, I made a mock double station with the info i wanted it to have.
+
+The second test just uses assertThat() to check that the user input validation method is working correctly.
 
 
 ## Built With
