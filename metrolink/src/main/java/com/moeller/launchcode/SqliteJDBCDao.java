@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
- //Data Access Object is basically an object or an interface that provides access to an underlying database
+//Data Access Object is basically an object or an interface that provides access to an underlying database
 @Repository
 public class SqliteJDBCDao implements MetrolinkDao {
 

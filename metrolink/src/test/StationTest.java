@@ -1,5 +1,5 @@
+import com.moeller.launchcode.StartScreen;
 import com.moeller.launchcode.Stops;
-import com.moeller.launchcode.Validation;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -35,11 +35,11 @@ public class StationTest {
         when(stops.getStationName(stationZero)).thenReturn("5th and Missouri");
         when(stops.getNextArrival(stationZero)).thenReturn("8:30:00 AM");
 
-        Validation validation = new Validation();
-        validation.setMetroStops(stops);
+        StartScreen validation = new StartScreen();
+        validation.setStops(stops);
 
-        validation.validate(stationZero);
-
+//        validation.getNextStationArrival(stationZero);
+        System.out.println(validation.getNextStationArrival(stationZero));
 
         verify(stops, times(1)).getStationName(stationZero);
         verify(stops, times(1)).getNextArrival(stationZero);
@@ -55,10 +55,10 @@ public class StationTest {
         when(stops.getStationName(stationTwentyFour)).thenReturn("ROCK ROAD METROLINK STATION");
         when(stops.getNextArrival(stationTwentyFour)).thenReturn("11:42:00 AM");
 
-        Validation validation = new Validation();
-        validation.setMetroStops(stops);
+        StartScreen validation = new StartScreen();
+        validation.setStops(stops);
 
-        validation.validate(stationTwentyFour);
+        System.out.println(validation.getNextStationArrival(stationTwentyFour));
 
 
         verify(stops, times(1)).getStationName(stationTwentyFour);
@@ -75,10 +75,10 @@ public class StationTest {
         when(stops.getStationName(stationThirtyFour)).thenReturn("WASHINGTON PARK METROLINK STATION");
         when(stops.getNextArrival(stationThirtyFour)).thenReturn("12:02:00 PM");
 
-        Validation validation = new Validation();
-        validation.setMetroStops(stops);
+        StartScreen validation = new StartScreen();
+        validation.setStops(stops);
 
-        validation.validate(stationThirtyFour);
+        System.out.println(validation.getNextStationArrival(stationThirtyFour));
 
 
         verify(stops, times(1)).getStationName(stationThirtyFour);
@@ -86,19 +86,19 @@ public class StationTest {
         verifyNoMoreInteractions(stops);
     }
 
-
     @Test
     public void isValid() {
-        Validation validation = new Validation();
+        StartScreen validation = new StartScreen();
 
-        assertThat(validation.isValid(-9999), is(false));
-        assertThat(validation.isValid(-1), is(false));
-        assertThat(validation.isValid(36), is(false));
-        assertThat(validation.isValid(9999), is(false));
+        assertThat(validation.verifyRange(-9999), is(false));
+        assertThat(validation.verifyRange(-1), is(false));
+        assertThat(validation.verifyRange(36), is(false));
+        assertThat(validation.verifyRange(9999), is(false));
 
-        assertThat(validation.isValid(0), is(true));
-        assertThat(validation.isValid(1), is(true));
-        assertThat(validation.isValid(20), is(true));
-        assertThat(validation.isValid(35), is(true));
+        assertThat(validation.verifyRange(0), is(true));
+        assertThat(validation.verifyRange(1), is(true));
+        assertThat(validation.verifyRange(20), is(true));
+        assertThat(validation.verifyRange(35), is(true));
     }
 }
+

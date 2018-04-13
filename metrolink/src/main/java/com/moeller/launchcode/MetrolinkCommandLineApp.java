@@ -14,13 +14,12 @@ import org.springframework.stereotype.Component;
 public class MetrolinkCommandLineApp { //class is a blueprint used to make objects
 
     @Autowired //@Autowired annotation tells Spring where an injection needs to occur.
-
     public Validation validation;// Tells the application context to inject an instance of Validation here
-    @Autowired //@Autowired annotation tells Spring where an injection needs to occur.
 
-    public Stops stops;// Tells the application context to inject an instance of Stops here
     @Autowired
+    public Stops stops;
 
+    @Autowired
     public StartScreen screen;
 
     public static void main(String[] varArgs) {

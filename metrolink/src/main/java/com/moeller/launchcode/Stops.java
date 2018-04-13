@@ -23,7 +23,6 @@ public class Stops {
 
     @Autowired
     private SqliteJDBCDao arrival;
-//     String arrivalTime;
 
 
     public void Stops() {

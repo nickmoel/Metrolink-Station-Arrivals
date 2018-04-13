@@ -7,19 +7,21 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @Component
 public class StartScreen extends JFrame {
 
     static JFrame frame;
+    int user_Input;
 
     @Autowired
     Stops stops;
+
     @Autowired
     Validation validation;
 
-    public void mainFrame() {
-        // schedule this for the event dispatch thread (edt)
+    public void mainFrame() { // schedule this for the event dispatch thread (edt)
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 displayJFrame();
@@ -33,42 +35,13 @@ public class StartScreen extends JFrame {
         // create components
         JLabel instruction = new JLabel("Input the number for the METROLINK STATION that you wish to see the next arrival time for");
         instruction.setForeground(Color.RED);
-        //instruction.setBorder(new LineBorder(Color.red, 1));
         JList list;
         list = new JList(stops.outputStations().toArray(new String[0]));
 
         JLabel instruction2 = new JLabel("Input METROLINK STATION #");
 
         JTextField input = new JTextField(2);
-        //input.setText("0-35");
         input.setBorder(new LineBorder(Color.red, 1));
-        //input.setEditable(false);
-        input.setInputVerifier(new InputVerifier() {
-            int MAX = 35;
-            int MIN = 0;
-            @Override
-
-            public boolean verify(JComponent input) {//adding Validator for integers in the correct range
-                String text = ((JTextField) input).getText();
-                int num = 0;
-                try {
-                    num = Integer.parseInt(text);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showOptionDialog(null, "Not a Number", "Not a Number", JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE, null, null, null);
-
-                }
-                if (text.equals("")||
-                        num <= MAX && num >= MIN)
-                    return true;
-                JOptionPane.showOptionDialog(null, "Invalid input. Please make your METROLINK Station selection from 0-35.", "Not a Valid Number", JOptionPane.DEFAULT_OPTION,
-                        JOptionPane.INFORMATION_MESSAGE, null, null, null);
-
-                return false;
-            }
-        });
-
-
 
         JTextArea output = new JTextArea(1, 40);
         output.setBorder(new LineBorder(Color.red, 1));
@@ -76,19 +49,22 @@ public class StartScreen extends JFrame {
         JButton jb1;
         jb1 = new JButton("Click here to get the Arrival Time");
 
-        // add the listener to the jbutton to handle the "pressed" event
-        jb1.addActionListener((ActionEvent e) -> {
-            int user_Input = Integer.parseInt(input.getText());
 
-            String nextStationArrival = validation.getNextStationArrival(user_Input);
-
-            output.setText(nextStationArrival); //display station and time in the output textarea
+        jb1.addActionListener(new ActionListener() {// add the listener to the jbutton to handle the "pressed" event
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
 
+                if (inputConversion(input) == true) {//sending out the input JtextArea object to be validated
+
+                    output.setText(getNextStationArrival(user_Input)); //display station and time in the output textarea
+
+                }
+            }
         });
 
-        // put the components on the frame
-        frame.getContentPane().setLayout(new FlowLayout());
+
+        frame.getContentPane().setLayout(new FlowLayout());// put the components on the frame
         frame.add(instruction);
         frame.add(list);
         frame.add(instruction2);
@@ -96,17 +72,61 @@ public class StartScreen extends JFrame {
         frame.add(output);
         frame.add(jb1);
 
-        // set up the jframe, then display it
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // set up the jframe, then display it
         frame.setPreferredSize(new Dimension(800, 800));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        input.requestFocusInWindow() ;
+        input.requestFocusInWindow();
+    }
+
+
+    public boolean inputConversion(JComponent input) {
+
+        String user_Input_Text = ((JTextField) input).getText();//converts object field into easier to manage String then sends it to different tests for validation
+        try {
+            user_Input = Integer.parseInt(user_Input_Text);
+        } catch (NumberFormatException e) {
+            JOptionPane.showOptionDialog(null, "Not a Number", "Not a Number", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            return false;
+        }
+        if (verifyRange(user_Input) == true)
+            return true;
+
+        return false;
+    }
+
+
+    public boolean verifyRange(int user_Input) {//checks if integer value is within range
+        int MAX = 35;
+        int MIN = 0;
+
+        if (user_Input <= MAX && user_Input >= MIN) {
+            return true;
+        } else {
+            JOptionPane.showOptionDialog(null, "Invalid input. Please make your METROLINK Station selection from 0-35.", "Not a Valid Number", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            return false;
+
+
+        }
+    }
+
+    public String getNextStationArrival(int user_Input) {
+
+        String stationName = stops.getStationName(user_Input);
+        String nextArrival = stops.getNextArrival(user_Input);
+        String nextStationArrival = " The next arrival at " + stationName + " is at " + nextArrival;
+        return nextStationArrival;
+        //return "Next arrival at " + metroStops.getStationName(user_Input) + " is at " + metroStops.getNextArrival(user_Input);// leftover code pre SWING GUI
+    }
+
+    public void setStops(Stops stops) {//for mock object
+        this.stops = stops;
     }
 }
-
-
 
 
 

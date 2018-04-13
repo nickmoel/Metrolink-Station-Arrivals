@@ -11,6 +11,4 @@ public interface MetrolinkDao {
     List<String> getArrivals(Station station);
 
 
-
-
 }
