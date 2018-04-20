@@ -1,7 +1,7 @@
 
 # STL METROLINK STATION NEXT ARRIVAL TIME CHECKER v0.7.7 *Swing GUI just added*
 
-![Alt Text](https://i.imgur.com/72XqsVN.gif)
+![Alt Text](https://i.imgur.com/u8oNyeS.gif)
 
 Launch Code Self guided Java Exercises PSET7 v0.7.7. Transitioning from JDBC to HIBERNATE. This final Problem uses my solution for PSET6 as a base.
 
