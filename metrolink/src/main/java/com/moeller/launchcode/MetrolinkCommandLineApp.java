@@ -8,13 +8,11 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Nick on 9/8/2017.
  */
-@Component //tells spring there is objects here to be injected
+@Component
 
 
-public class MetrolinkCommandLineApp { //class is a blueprint used to make objects
+public class MetrolinkCommandLineApp {
 
-    @Autowired //@Autowired annotation tells Spring where an injection needs to occur.
-    public Validation validation;// Tells the application context to inject an instance of Validation here
 
     @Autowired
     public Stops stops;
@@ -26,7 +24,7 @@ public class MetrolinkCommandLineApp { //class is a blueprint used to make objec
 
 
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-        //The above line of code reads the config file and loads all the classes defined in the config file into the JVM. And it does not actually creates objects. Beans = objects.
+
 
         MetrolinkCommandLineApp metrolinkCommandLineApp =
                 (MetrolinkCommandLineApp) context.getBean("metrolinkCommandLineApp");

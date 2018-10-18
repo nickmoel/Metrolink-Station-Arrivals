@@ -8,7 +8,6 @@ import javax.persistence.*;
  * Created by Nick on 9/14/2017.
  */
 
-//Data Transfer Object (DTO) class is a java-bean like artifact that holds the data that you want to share
 @Component
 @Entity
 @Table(name = "stops")

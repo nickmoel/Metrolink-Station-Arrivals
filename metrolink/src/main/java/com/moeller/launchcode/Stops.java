@@ -30,23 +30,23 @@ public class Stops {
     }
 
 
-        public List<String> outputStations() {//list stations
-            List<String> stations = new ArrayList<String>();
-            List<Station> routeStops = arrival.getStopsAllStops();
-            for (int i = 0; i < routeStops.size(); i++) {
-                int y = i;
-               stations.add(y + " " + routeStops.get(i).getStationName() + "  ");
-
-                }
-            return stations;
-        }
-
-
-    public String getStationName(int user_Input) {// retrieve station name using user input from stored list
+    public List<String> outputStations() {
+        List<String> stations = new ArrayList<String>();
         List<Station> routeStops = arrival.getStopsAllStops();
-String stationName = routeStops.get(user_Input).getStationName();
-        //return routeStops.get(user_Input).getStationName();
-return stationName;
+        for (int i = 0; i < routeStops.size(); i++) {
+            int y = i;
+            stations.add(y + " " + routeStops.get(i).getStationName() + "  ");
+
+        }
+        return stations;
+    }
+
+
+    public String getStationName(int user_Input) {
+        List<Station> routeStops = arrival.getStopsAllStops();
+        String stationName = routeStops.get(user_Input).getStationName();
+
+        return stationName;
     }
 
     public String getNextArrival(int user_input) {
@@ -54,24 +54,19 @@ return stationName;
         Station station = routeStops.get(user_input);
         List<String> times = arrival.getArrivals(station);
         String arrivalTime = times.get(0);
-String arrival_Time = convertTime(arrivalTime);
+        String arrival_Time = convertTime(arrivalTime);
         return arrival_Time;
     }
 
 
     public String convertTime(String arrivalTime) {
-        //input time pattern
         DateFormat df = new SimpleDateFormat("HH:mm:ss");
-        //Date/time pattern of desired output date
         DateFormat outputformat = new SimpleDateFormat("hh:mm:ss aa");
         Date date;
         String output;
         try {
-            //Conversion of input String to date
             date = df.parse(arrivalTime);
-            //old date format to new date format
             output = outputformat.format(date);
-            //convert output back to arrivalTime
             arrivalTime = output;
 
         } catch (java.text.ParseException e) {

@@ -18,10 +18,8 @@ public class StartScreen extends JFrame {
     @Autowired
     Stops stops;
 
-    @Autowired
-    Validation validation;
 
-    public void mainFrame() { // schedule this for the event dispatch thread (edt)
+    public void mainFrame() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 displayJFrame();
@@ -50,21 +48,21 @@ public class StartScreen extends JFrame {
         jb1 = new JButton("Click here to get the Arrival Time");
 
 
-        jb1.addActionListener(new ActionListener() {// add the listener to the jbutton to handle the "pressed" event
+        jb1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
 
-                if (inputConversion(input) == true) {//sending out the input JtextArea object to be validated
+                if (inputConversion(input) == true) {
 
-                    output.setText(getNextStationArrival(user_Input)); //display station and time in the output textarea
+                    output.setText(getNextStationArrival(user_Input));
 
                 }
             }
         });
 
 
-        frame.getContentPane().setLayout(new FlowLayout());// put the components on the frame
+        frame.getContentPane().setLayout(new FlowLayout());
         frame.add(instruction);
         frame.add(list);
         frame.add(instruction2);
@@ -73,7 +71,7 @@ public class StartScreen extends JFrame {
         frame.add(jb1);
 
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // set up the jframe, then display it
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 800));
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -84,7 +82,7 @@ public class StartScreen extends JFrame {
 
     public boolean inputConversion(JComponent input) {
 
-        String user_Input_Text = ((JTextField) input).getText();//converts object field into easier to manage String then sends it to different tests for validation
+        String user_Input_Text = ((JTextField) input).getText();
         try {
             user_Input = Integer.parseInt(user_Input_Text);
         } catch (NumberFormatException e) {
@@ -99,7 +97,7 @@ public class StartScreen extends JFrame {
     }
 
 
-    public boolean verifyRange(int user_Input) {//checks if integer value is within range
+    public boolean verifyRange(int user_Input) {
         int MAX = 35;
         int MIN = 0;
 
@@ -120,7 +118,7 @@ public class StartScreen extends JFrame {
         String nextArrival = stops.getNextArrival(user_Input);
         String nextStationArrival = " The next arrival at " + stationName + " is at " + nextArrival;
         return nextStationArrival;
-        //return "Next arrival at " + metroStops.getStationName(user_Input) + " is at " + metroStops.getNextArrival(user_Input);// leftover code pre SWING GUI
+
     }
 
     public void setStops(Stops stops) {//for mock object
